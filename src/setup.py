@@ -1,22 +1,6 @@
-from Tkinter import *
-import socket
-import fcntl
-import struct
-import array
-
-
-#Creating the window with full-screen
-
-def createWindow():
-	window.destroy()
-	mainWindow = Tk()
-	mainWindow.resizable(0,0)
-	width = mainWindow.winfo_screenwidth()
-	height = mainWindow.winfo_screenheight()
-	mainWindow.geometry(str(width) + "x" + str(height))
-	mainWindow.title("WPSPinGenerator-GUI")
-	
 # Method to get all the networks interfaces availables at the system
+
+execfile("__init__.py")
 
 def allInterfaces():
 	max_possible = 128  # arbitrary. raise if needed.
@@ -32,7 +16,6 @@ def allInterfaces():
 		lst.append((name, ip))
 	return lst
 
-
 # Creating a windows to select network interface
 
 window = Tk()
@@ -42,7 +25,7 @@ height = window.winfo_screenheight()/4
 window.geometry(str(width) + "x" + str(height))
 window.title("Select Network Interface")
 
-# Creating the button and the listbox to select network interface 
+# Creating the button and the listbox to select network interface
 
 interface_list = allInterfaces()
 
@@ -59,8 +42,3 @@ buttonSelectNetwork = Button(window, text="Select",command=createWindow)
 buttonSelectNetwork.pack(side=BOTTOM)
 
 window.mainloop()
-
-
-
-
-
