@@ -1,7 +1,6 @@
+execfile("src/__init__.py")
+
 # Method to get all the networks interfaces availables at the system
-
-execfile("__init__.py")
-
 def allInterfaces():
 	max_possible = 128  # arbitrary. raise if needed.
 	bytes = max_possible * 32
@@ -17,15 +16,12 @@ def allInterfaces():
 	return lst
 
 # Creating a windows to select network interface
-
 window = Tk()
 window.resizable(0,0)
 width = window.winfo_screenwidth()/4
 height = window.winfo_screenheight()/4
 window.geometry(str(width) + "x" + str(height))
 window.title("Select Network Interface")
-
-# Creating the button and the listbox to select network interface
 
 interface_list = allInterfaces()
 
@@ -38,6 +34,7 @@ for i in interface_list:
 	networkList.select_set(0)
 networkList.pack()
 
+# Creating the button and the listbox to select network interface
 buttonSelectNetwork = Button(window, text="Select",command=createWindow)
 buttonSelectNetwork.pack(side=BOTTOM)
 

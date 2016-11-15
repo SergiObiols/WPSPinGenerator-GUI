@@ -4,4 +4,4 @@ import fcntl
 import struct
 import array
 
-execfile("main.py")
+execfile("src/main.py")
