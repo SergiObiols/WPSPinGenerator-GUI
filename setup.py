@@ -5,7 +5,7 @@ execfile("src/__init__.py")
 def allInterfaces():
 	iw = subprocess.Popen('iw dev'.split(), stdout=subprocess.PIPE)
 	args = shlex.split("awk '$1==\"Interface\"{print $2}'")
-	awk =subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
+	awk = subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
 	return iter(awk.stdout.readline, b'')
 
 # Creating a windows to select network interface

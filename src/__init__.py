@@ -5,5 +5,6 @@ import socket
 import fcntl
 import struct
 import array
+import os
 
 execfile("src/main.py")
