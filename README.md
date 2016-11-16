@@ -11,7 +11,7 @@ cd WPSPinGenerator-GUI/
 python setup.py
 ```
 ## Notes
-This scripts is edited under the General Public License as defined by the Free software foundation. This package is distributed in the hope that it will be useful, but without any warranty; It can be used and modified and shared but should be referenced to, it CANNOT be sold or be used for a commercial-economical purpose. The discovery of One algorithm used in WPSPIN have been made parallely and previously by zhaochunsheng in a C. script named computepinC83A35.
+This project is edited under the General Public License as defined by the Free software foundation. This package is distributed in the hope that it will be useful, but without any warranty; It can be used and modified and shared but should be referenced to, it CANNOT be sold or be used for a commercial-economical purpose. The discovery of One algorithm used in WPSPIN have been made parallely and previously by zhaochunsheng in a C. script named computepinC83A35.
 We only changed the original script for function with GUI, but we not originals creators of the script.
 The original script is [WPSPinGenerator](https://github.com/linkp2p/WPS-PIN)
 
