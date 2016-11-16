@@ -2,13 +2,15 @@ execfile("src/__init__.py")
 
 # Method to get all the networks interfaces availables at the system
 def allInterfaces():
-	list = []
 	iw = subprocess.Popen('iw dev'.split(), stdout=subprocess.PIPE)
 	args = shlex.split("awk '$1==\"Interface\"{print $2}'")
 	awk =subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
-	output = awk.communicate()[0]
-
-	return output
+	while(True):
+		retcode = awk.poll() #returns None while subprocess is running
+		line = awk.stdout.readline()
+		yield line
+		if(retcode is not None):
+			break
 
 # Creating a windows to select network interface
 window = Tk()
@@ -26,7 +28,6 @@ networkList.config(yscrollcommand = scroll.set)
 scroll.config(command = networkList.yview)
 
 #Insert network interface in list
-print(interface_list)
 for interface in interface_list:
 		networkList.insert(END,interface)
 networkList.select_set(0)
