@@ -5,12 +5,7 @@ def allInterfaces():
 	iw = subprocess.Popen('iw dev'.split(), stdout=subprocess.PIPE)
 	args = shlex.split("awk '$1==\"Interface\"{print $2}'")
 	awk =subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
-	while(True):
-		retcode = awk.poll() #returns None while subprocess is running
-		line = awk.stdout.readline()
-		yield line
-		if(retcode is not None):
-			break
+	return iter(awk.stdout.readline, b'')
 
 # Creating a windows to select network interface
 window = Tk()
@@ -29,7 +24,7 @@ scroll.config(command = networkList.yview)
 
 #Insert network interface in list
 for interface in interface_list:
-		networkList.insert(END,interface)
+		networkList.insert(END,interface[:-1])
 networkList.select_set(0)
 networkList.pack()
 
