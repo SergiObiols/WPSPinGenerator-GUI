@@ -31,7 +31,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 **Adam Alvarado Bertomeu** [deltcod](https://github.com/deltcod)
 
-**Jesùs Franch Bertomeu** [xus93](https://github.com/xus93)
+**Jesús Franch Bertomeu** [xus93](https://github.com/xus93)
 
 See also the list of [contributors](https://github.com/SergiObiols/WPSPinGenerator-GUI/graphs/contributors) who participated in this project.
 
