@@ -2,18 +2,13 @@ execfile("src/__init__.py")
 
 # Method to get all the networks interfaces availables at the system
 def allInterfaces():
-	max_possible = 128  # arbitrary. raise if needed.
-	bytes = max_possible * 32
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	names = array.array('B', '\0' * bytes)
-	outbytes = struct.unpack('iL', fcntl.ioctl(s.fileno(),0x8912,struct.pack('iL', bytes, names.buffer_info()[0])))[0]
-	namestr = names.tostring()
-	lst = []
-	for i in range(0, outbytes, 40):
-		name = namestr[i:i+16].split('\0', 1)[0]
-		ip   = namestr[i+20:i+24]
-		lst.append((name, ip))
-	return lst
+	list = []
+	iw = subprocess.Popen('iw dev'.split(), stdout=subprocess.PIPE)
+	args = shlex.split("awk '$1==\"Interface\"{print $2}'")
+	awk =subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
+	output = awk.communicate()[0]
+
+	return output
 
 # Creating a windows to select network interface
 window = Tk()
@@ -29,9 +24,12 @@ scroll = Scrollbar(window)
 networkList = Listbox(window, height = 10, width = 80, selectmode = SINGLE)
 networkList.config(yscrollcommand = scroll.set)
 scroll.config(command = networkList.yview)
-for i in interface_list:
-	networkList.insert(END,i[0])
-	networkList.select_set(0)
+
+#Insert network interface in list
+print(interface_list)
+for interface in interface_list:
+		networkList.insert(END,interface)
+networkList.select_set(0)
 networkList.pack()
 
 # Creating the button and the listbox to select network interface
