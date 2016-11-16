@@ -8,4 +8,5 @@ def createWindow(networkInterface):
 	height = mainWindow.winfo_screenheight()
 	mainWindow.geometry(str(width) + "x" + str(height))
 	mainWindow.title("WPSPinGenerator-GUI")
-	os.system('airmon-ng start '+networkInterface)
+	airmonInterface = os.popen("airmon-ng start "+networkInterface+" | awk '{print $5}' | tail -n 2").read()[:-3]
+	print(airmonInterface)
