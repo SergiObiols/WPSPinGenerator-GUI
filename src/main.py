@@ -1,6 +1,6 @@
 #Creating the window with full-screen
 
-def createWindow():
+def createWindow(networkInterface):
 	window.destroy()
 	mainWindow = Tk()
 	mainWindow.resizable(0,0)
@@ -8,3 +8,4 @@ def createWindow():
 	height = mainWindow.winfo_screenheight()
 	mainWindow.geometry(str(width) + "x" + str(height))
 	mainWindow.title("WPSPinGenerator-GUI")
+	print(networkInterface)
