@@ -16,18 +16,19 @@ width = window.winfo_screenwidth()/4
 height = window.winfo_screenheight()/4
 window.geometry(str(width) + "x" + str(height))
 window.title("WPSPinGenerator-GUI")
+window.configure(bg='#A9E5BB')
 scroll = Scrollbar(window)
 
 #Creating the frame to add the diferents objects in to the window
 
 frameWindow = Frame (window)
 frameWindow.pack(side = TOP)
+frameWindow.configure(bg='#A9E5BB')
 
-
-labelWindow = Label(frameWindow,text="Welcome to WPSPinGenerator-GUI", font=("Helvetica", 12))
+labelWindow = Label(frameWindow,text="Welcome to WPSPinGenerator-GUI", font=("Helvetica", 12), bg='#A9E5BB')
 labelWindow.pack(side=TOP)
 
-labelWindow2 = Label(frameWindow,text="Available Networks Interfaces", font=("Helvetica", 10), pady=10)
+labelWindow2 = Label(frameWindow,text="Available Networks Interfaces", font=("Helvetica", 10), pady=10, bg='#A9E5BB')
 labelWindow2.pack(side=TOP)
 
 #Insert network interface in list
@@ -43,10 +44,8 @@ networkList.pack()
 
 # Creating the button and the listbox to select network interface
 
-buttonSelectNetwork = Button(window, text="Select Network Interface", font=("Helvetica", 10))
-buttonSelectNetwork.config(command=lambda: createWindow(networkList.get(networkList.curselection())))
+buttonSelectNetwork = Button(window, text="Select Network Interface", font=("Helvetica", 10), bg='#2D1E2F', fg='white')
+buttonSelectNetwork.config(activebackground='#2D1E2F', activeforeground='white', command=lambda: createWindow(networkList.get(networkList.curselection())))
 buttonSelectNetwork.pack(side=BOTTOM)
-
-
 
 window.mainloop()
