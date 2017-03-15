@@ -19,6 +19,21 @@ def center(toplevel):
     y = h/2 - size[1]/2
     toplevel.geometry("%dx%d+%d+%d" % (size + (x, y)))
 
+# Move for ListBox in arrows keys
+def onEntryDown():
+    if interfaceList.selection < interfaceList.size()-1:
+        interfaceList.yview_scroll(-1, "units")
+        interfaceList.select_clear(interfaceList.selection)
+        interfaceList.selection += 1
+        interfaceList.select_set(interfaceList.selection)
+
+def onEntryUp():
+    if interfaceList.selection > 0:
+        interfaceList.yview_scroll(1, "units")
+        interfaceList.select_clear(interfaceList.selection)
+        interfaceList.selection -= 1
+        interfaceList.select_set(interfaceList.selection)
+
 # Creating a windows to select network interface
 
 window = Tk()
@@ -51,8 +66,10 @@ scroll.config(command = interfaceList.yview)
 interface_list = allInterfaces()
 for interface in interface_list:
 		interfaceList.insert(END,interface[:-1])
+interfaceList.selection = 0
 interfaceList.select_set(0)
 interfaceList.pack()
+
 
 # Creating the button to select network interface
 
@@ -61,5 +78,7 @@ buttonSelectNetwork.config(activebackground='#2D1E2F', activeforeground='white',
 buttonSelectNetwork.pack(side=BOTTOM)
 
 window.bind("<Return>", lambda x: createWindow(interfaceList.get(interfaceList.curselection())))
+window.bind("<Down>", lambda x: onEntryDown())
+window.bind("<Up>", lambda x: onEntryUp())
 
 window.mainloop()
