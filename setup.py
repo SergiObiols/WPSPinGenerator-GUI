@@ -8,6 +8,17 @@ def allInterfaces():
 	awk = subprocess.Popen(args, stdin=iw.stdout, stdout=subprocess.PIPE)
 	return iter(awk.stdout.readline, b'')
 
+# Method that let us to center the window on the middle of the screen
+
+def center(toplevel):
+    toplevel.update_idletasks()
+    w = toplevel.winfo_screenwidth()
+    h = toplevel.winfo_screenheight()
+    size = tuple(int(_) for _ in toplevel.geometry().split('+')[0].split('x'))
+    x = w/2 - size[0]/2
+    y = h/2 - size[1]/2
+    toplevel.geometry("%dx%d+%d+%d" % (size + (x, y)))
+
 # Creating a windows to select network interface
 
 window = Tk()
@@ -17,6 +28,7 @@ height = window.winfo_screenheight()/4
 window.geometry(str(width) + "x" + str(height))
 window.title("WPSPinGenerator-GUI")
 window.configure(bg='#A9E5BB')
+center(window)
 scroll = Scrollbar(window)
 
 #Creating the frame to add the diferents objects in to the window
