@@ -45,19 +45,21 @@ labelWindow2.pack(side=TOP)
 
 #Insert network interface in list
 
-networkList = Listbox(frameWindow, height = 5, width = 40, selectmode = SINGLE, font=("Helvetica", 10))
-networkList.config(yscrollcommand = scroll.set)
-scroll.config(command = networkList.yview)
+interfaceList = Listbox(frameWindow, height = 5, width = 40, selectmode = SINGLE, font=("Helvetica", 10))
+interfaceList.config(yscrollcommand = scroll.set)
+scroll.config(command = interfaceList.yview)
 interface_list = allInterfaces()
 for interface in interface_list:
-		networkList.insert(END,interface[:-1])
-networkList.select_set(0)
-networkList.pack()
+		interfaceList.insert(END,interface[:-1])
+interfaceList.select_set(0)
+interfaceList.pack()
 
-# Creating the button and the listbox to select network interface
+# Creating the button to select network interface
 
 buttonSelectNetwork = Button(window, text="Select Network Interface", font=("Helvetica", 10), bg='#2D1E2F', fg='white')
 buttonSelectNetwork.config(activebackground='#2D1E2F', activeforeground='white', command=lambda: createWindow(networkList.get(networkList.curselection())))
 buttonSelectNetwork.pack(side=BOTTOM)
+
+window.bind("<Return>", lambda x: createWindow(interfaceList.get(interfaceList.curselection())))
 
 window.mainloop()

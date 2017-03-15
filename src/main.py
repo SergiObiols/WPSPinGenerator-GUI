@@ -15,10 +15,37 @@ def createWindow(networkInterface):
 	window.destroy()
 	mainWindow = Tk()
 	mainWindow.resizable(0,0)
+	mainWindow.configure(bg='#A9E5BB')
 	width = mainWindow.winfo_screenwidth()
 	height = mainWindow.winfo_screenheight()
 	mainWindow.geometry(str(width/2) + "x" + str(height/2))
 	mainWindow.title("WPSPinGenerator-GUI")
 	center(mainWindow)
+
+	frameWindow = Frame (mainWindow)
+	frameWindow.pack(side = LEFT)
+	frameWindow.configure(bg='#A9E5BB')
+
+	# Creating the button to scan all the networks interfaces
+
+	buttonScan = Button(mainWindow, text="Scan Networks", font=("Helvetica", 10), bg='#2D1E2F', fg='white',height=1, width=15)
+	buttonScan.config(activebackground='#2D1E2F', activeforeground='white')
+	buttonScan.place(relx=0.95, y=50,anchor="e")
+
+	# Creating the button show all the networks interfaces storaged on the system
+
+	buttonNetwork = Button(mainWindow, text="Storaged Networks", font=("Helvetica", 10), bg='#2D1E2F', fg='white', height=1, width=15)
+	buttonNetwork.config(activebackground='#2D1E2F', activeforeground='white')
+	buttonNetwork.place(relx=0.95, y=125,anchor="e")
+
+	buttonAttack = Button(mainWindow, text="Attack", font=("Helvetica", 10), bg='#2D1E2F', fg='white', height=1, width=15)
+	buttonAttack.config(activebackground='#2D1E2F', activeforeground='white')
+	buttonAttack.place(relx=0.95, y=200,anchor="e")
+
+	buttonInterface = Button(mainWindow, text="Change NIC", font=("Helvetica", 10), bg='#2D1E2F', fg='white', height=1, width=15)
+	buttonInterface.config(activebackground='#2D1E2F', activeforeground='white')
+	buttonInterface.place(relx=0.95, y=275,anchor="e")
+
 	airmonInterface = os.popen("airmon-ng start "+networkInterface+" | grep monitor | awk '{print $5}'").read()[:-2]
+	print(networkInterface)
 	print(airmonInterface)
