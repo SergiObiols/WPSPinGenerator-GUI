@@ -74,7 +74,7 @@ interfaceList.pack()
 # Creating the button to select network interface
 
 buttonSelectNetwork = Button(window, text="Select Network Interface", font=("Helvetica", 10), bg='#2D1E2F', fg='white')
-buttonSelectNetwork.config(activebackground='#2D1E2F', activeforeground='white', command=lambda: createWindow(networkList.get(networkList.curselection())))
+buttonSelectNetwork.config(activebackground='#2D1E2F', activeforeground='white', command=lambda: createWindow(interfaceList.get(interfaceList.curselection())))
 buttonSelectNetwork.pack(side=BOTTOM)
 
 window.bind("<Return>", lambda x: createWindow(interfaceList.get(interfaceList.curselection())))
