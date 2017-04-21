@@ -28,7 +28,7 @@ def createWindow(networkInterface):
 
 	# Creating the button to scan all the networks interfaces
 
-	buttonScan = Button(mainWindow, text="Scan Networks", font=("Helvetica", 10), bg='#2D1E2F', fg='white',height=1, width=15, command= lambda: scanNetworks())
+	buttonScan = Button(mainWindow, text="Scan Networks", font=("Helvetica", 10), bg='#2D1E2F', fg='white',height=1, width=15, command= lambda: scanNetworks(airmonInterface))
 	buttonScan.config(activebackground='#2D1E2F', activeforeground='white')
 	buttonScan.place(relx=0.95, y=50,anchor="e")
 
@@ -52,6 +52,10 @@ def createWindow(networkInterface):
 	networksList.config(yscrollcommand=scroll.set)
 	networksList.pack()
 
-def scanNetworks():
-	holo = os.popen("echo '/TODO'").read()
-	print holo
+def scanNetworks(airmonInterface):
+
+	networksLists = subprocess.Popen("airodump-ng " + airmonInterface, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
+	time.sleep(30)
+	os.killpg(os.getpgid(networksLists.pid), signal.SIGTERM)
+
+	print "List networks //TODO"
