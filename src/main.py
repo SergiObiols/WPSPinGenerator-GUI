@@ -46,7 +46,8 @@ def createWindow(networkInterface):
 	buttonInterface.config(activebackground='#2D1E2F', activeforeground='white')
 	buttonInterface.place(relx=0.95, y=275,anchor="e")
 
-	airmonInterface = os.popen("airmon-ng start "+networkInterface+" | grep monitor | awk '{print $5}'").read()[:-2]
+	os.popen("airmon-ng start " + networkInterface)
+	airmonInterface = os.popen("ifconfig | grep mon | awk '{print $1}'").read()
 
 	networksList = Listbox(frameWindow, height=26, width=100, selectmode=SINGLE, font=("Helvetica", 10))
 	networksList.config(yscrollcommand=scroll.set)
